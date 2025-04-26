@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:latest")
+                    docker.build("{DOCKER_IMAGE}:latest")
                 }
             }
         }
@@ -24,8 +24,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS_ID}") {
-                        docker.image("${DOCKER_IMAGE}:latest").push()
+                    docker.withRegistry('https://index.docker.io/v1/', "{DOCKERHUB_CREDENTIALS_ID}") {
+                        docker.image("{DOCKER_IMAGE}:latest").push()
                     }
                 }
             }
