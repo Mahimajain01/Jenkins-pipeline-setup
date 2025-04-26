@@ -20,7 +20,7 @@ pipeline {
                     docker build -t flask-docker-app -f flask-docker-app/Dockerfile .
                 }
             }
-        }
+        
 
         stage('Push to Docker Hub') {
             steps {
@@ -32,4 +32,5 @@ pipeline {
             }
         }
     } // <-- This closing brace was missing
-} // <-- Added this to properly close the pipeline block
+    }
+}// <-- Added this to properly close the pipeline block
