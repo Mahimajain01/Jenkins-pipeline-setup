@@ -20,7 +20,6 @@ pipeline {
                     docker build -t flask-docker-app -f flask-docker-app/Dockerfile .
                 }
             }
-        }
 
         stage('Push to Docker Hub') {
             steps {
