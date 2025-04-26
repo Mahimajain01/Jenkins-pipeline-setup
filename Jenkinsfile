@@ -5,6 +5,13 @@ pipeline {
         DOCKER_IMAGE = 'mahimajain01/flask-docker-app'  // Define your Docker image name
         DOCKERHUB_CREDENTIALS_ID = 'dockerhub-credentials'  // Jenkins credentials ID for Docker Hub
     }
+    stages {  
+        stage('Checkout') {  
+            steps {  
+            // Clone the Git repository  
+                git branch: 'master', url: "${GIT_REPO_URL}"  
+            }  
+    }
 
     stages {
         stage('Build Docker Image') {
@@ -26,5 +33,14 @@ pipeline {
                 }
             }
         }
+        post {  
+            success {  
+                echo 'Pipeline completed successfully!'  
+    }  
+    failure {  
+        echo 'Pipeline failed!'  
+    }  
+}  
+}
     }
 }
