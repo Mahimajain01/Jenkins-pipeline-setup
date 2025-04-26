@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    Docker.build('mahimajain01/jenkins-pipeline-setup')
+                    docker.build('mahimajain01/jenkins-pipeline-setup')
                 }
             }
         }
