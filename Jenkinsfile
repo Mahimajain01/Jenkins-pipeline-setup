@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build('mahimajain01/jenkins-pipeline-setup')
+                    docker build -t flask-docker-app -f flask-docker-app/Dockerfile .
                 }
             }
         }
