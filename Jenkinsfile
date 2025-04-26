@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Dockerfile in the root of your project
-                    docker.build("${DOCKER_IMAGE}:latest")
+                    docker build -t "mahimajain01/flask-docker-app:latest" -f flask-docker-app/Dockerfile .
                 }
             }
         }
