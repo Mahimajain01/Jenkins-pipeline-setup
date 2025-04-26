@@ -20,12 +20,13 @@ pipeline {
                     docker build -t flask-docker-app -f flask-docker-app/Dockerfile .
                 }
             }
+        }
 
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', "{DOCKERHUB_CREDENTIALS_ID}") {
-                        docker.image("{DOCKER_IMAGE}:latest").push()
+                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS_ID}") {
+                        docker.image("${DOCKER_IMAGE}:latest").push()
                     }
                 }
             }
