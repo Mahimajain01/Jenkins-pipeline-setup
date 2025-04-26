@@ -2,34 +2,29 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'mahimajain01/flask-docker-app'
-        DOCKERHUB_CREDENTIALS_ID = 'dockerhub-credentials' // Jenkins credentials ID
+        DOCKER_IMAGE = 'mahimajain01/flask-docker-app'  // Define your Docker image name
+        DOCKERHUB_CREDENTIALS_ID = 'dockerhub-credentials'  // Jenkins credentials ID for Docker Hub
     }
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Mahimajain01/Jenkins-pipeline-setup.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image
-                    docker build -t flask-docker-app -f flask-docker-app/Dockerfile .
+                    // Build the Docker image using the Dockerfile in the root of your project
+                    docker.build("${DOCKER_IMAGE}:latest")
                 }
             }
-        
+        }
 
-        stage('Push to Docker Hub') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
+                    // Authenticate and push the Docker image to Docker Hub
                     docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS_ID}") {
                         docker.image("${DOCKER_IMAGE}:latest").push()
                     }
                 }
             }
         }
-    } // This closes the stages block
-} // This closes the pipeline block
+    }
+}
