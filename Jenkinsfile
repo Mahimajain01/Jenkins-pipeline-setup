@@ -31,5 +31,5 @@ pipeline {
                 }
             }
         }
-    }
-}
+    } // <-- This closing brace was missing
+} // <-- Added this to properly close the pipeline block
