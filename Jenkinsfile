@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the Git repository
-                git branch: 'master', url: "${GIT_REPO_URL}"
+                git branch: 'main', url: "${GIT_REPO_URL}"
             }
         }
 
